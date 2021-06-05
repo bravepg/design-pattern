@@ -1,0 +1,17 @@
+@startuml mainframe
+  actor iMain
+  participant ConcreteFactory
+  participant ":ConcreteProduct" as ConcreteProduct
+
+  activate iMain
+  iMain -> ConcreteFactory: 1.0 factoryMethod(): Product
+  activate ConcreteFactory
+
+  ConcreteFactory --> ConcreteProduct: 1.1 <<create>>
+  deactivate ConcreteFactory
+
+  iMain -> ConcreteProduct: 1.2 use
+  activate ConcreteProduct
+
+  ......
+@enduml

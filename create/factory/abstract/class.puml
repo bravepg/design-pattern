@@ -1,0 +1,58 @@
+@startuml main
+package "class AbstractFactory" <<Frame>> {
+  abstract class AbstractFactory {
+    +createProductA(): void
+    +createProductB(): void
+  }
+
+  class ConcreteFactory1 {
+    +createProductA(): void
+    +createProductB(): void
+  }
+
+  class ConcreteFactory2 {
+    +createProductA(): void
+    +createProductB(): void
+  }
+
+  ConcreteFactory1 ..up|> AbstractFactory
+  ConcreteFactory2 ..up|> AbstractFactory
+
+
+  abstract class ProductA {
+    +use():void
+  }
+
+  class ConcreteProductA1 {
+    +use():void
+  }
+
+  class ConcreteProductA2 {
+    +use():void
+  }
+
+  ConcreteProductA1 ..up|> ProductA
+  ConcreteProductA2 ..up|> ProductA
+
+
+  abstract class ProductB {
+    +eat():void
+  }
+
+  class ConcreteProductB1 {
+    +eat():void
+  }
+
+  class ConcreteProductB2 {
+    +eat():void
+  }
+  ConcreteProductB1 ..up|> ProductB
+  ConcreteProductB2 ..up|> ProductB
+
+  ConcreteFactory1 ..> ConcreteProductA1
+  ConcreteFactory1 ..> ConcreteProductB1
+
+  ConcreteFactory2 ..> ConcreteProductA2
+  ConcreteFactory2 ..> ConcreteProductB2
+}
+@enduml

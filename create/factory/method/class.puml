@@ -1,0 +1,28 @@
+@startuml main
+package "class MethodFactory" <<Frame>> {
+  abstract class Factory {
+    +factoryMethod(): Product
+  }
+
+  class "Concreate Factory" as CF {
+    +factoryMethod(): Product
+  }
+
+  abstract class Product {
+    +use(): void
+  }
+
+  class "Concreate Product" as CP {
+    +use(): void
+  }
+
+  Factory <|.. CF
+  Product <|.. CP
+
+  CP <.right. CF
+
+  note bottom of CF
+  return new CP()
+  end note
+}
+@enduml

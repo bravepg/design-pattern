@@ -1,0 +1,15 @@
+@startuml mainframe
+actor iMain
+participant ":Factory" as Factory
+participant ":ConcreteProductA" as ConcreteProductA
+
+activate iMain
+iMain -> Factory: 1.0 createProduct(string): Product
+activate Factory
+
+Factory --> ConcreteProductA: 1.1 <<create>>
+deactivate Factory
+
+iMain -> ConcreteProductA: 1.2 use()
+activate ConcreteProductA
+@enduml

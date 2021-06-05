@@ -1,0 +1,34 @@
+@startuml mainframe
+package "class SimpleFactory" <<Frame>> {
+  abstract class Product {
+    +use(): void
+  }
+
+  class ConcreteProductA {
+    +use(): void
+  }
+
+  class ConcreteProductB {
+    +use(): void
+  }
+
+  ConcreteProductA ..up|> Product
+  ConcreteProductB ..up|> Product
+
+
+  class Factory {
+    +createProduct(string): Product
+  }
+
+  Factory ..up> ConcreteProductA
+  Factory ..up> ConcreteProductB
+
+  note left of Factory
+  if (arg === 'A') {
+    return new ConcreteProductA();
+  } else if (arg === 'B') {
+    return new ConcreteProductB();
+  }
+  end note
+}
+@enduml

@@ -1,0 +1,26 @@
+@startuml main
+object 车
+object 小汽车
+object 自行车
+
+object 轮胎
+object 发动机
+
+object SUV
+
+object 学生
+object 班级
+object ID
+
+车 <|.. 小汽车
+车 <|.. 自行车
+
+轮胎 --right* 小汽车
+发动机 --left* 小汽车
+
+SUV --up|> 小汽车
+
+学生 ..right> 自行车
+学生 --lefto 班级
+学生 -- ID
+@enduml
