@@ -1,0 +1,28 @@
+@startuml mainframe
+package "class Strategy" <<Frame>> {
+  interface Strategy {
+    +algorithm(): void
+  }
+  class ConcreteStrategyA {
+    +algorithm(): void
+  }
+  class ConcreteStrategyB {
+    +algorithm(): void
+  }
+
+  ConcreteStrategyA ..|> Strategy
+  ConcreteStrategyB ..|> Strategy
+
+  abstract class Context {
+    +Strategy strategy
+    +algorithm(): void
+    +setStrategy(): void
+  }
+
+  Context ...right> Strategy
+
+  note left of Context
+  strategy.algorithm()
+  end note
+}
+@enduml
