@@ -1,0 +1,24 @@
+@startuml mainframe
+actor iMain
+participant ConcreteObserver
+participant ConcreteSubject
+
+iMain --> ConcreteObserver: 1.0 <<create>>
+iMain --> ConcreteSubject: 1.1 <<create>>
+iMain -> ConcreteSubject: 1.2 attach(a Observer)
+activate ConcreteSubject
+
+......
+
+iMain -> ConcreteSubject: 2.0 setState()
+
+ConcreteSubject -> ConcreteSubject: 2.1 notify()
+activate ConcreteSubject
+
+deactivate ConcreteSubject
+ConcreteSubject -> ConcreteObserver: 2.2 update()
+
+ConcreteObserver -> ConcreteSubject: 2.3 getState()
+activate ConcreteSubject
+
+@enduml

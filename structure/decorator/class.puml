@@ -1,0 +1,40 @@
+@startuml mainframe
+package "class Decorator" <<Frame>> {
+  abstract class Component {
+    +operation(): void
+  }
+  class ConcreteComponent {
+    +operation(): void
+  }
+  ConcreteComponent --up|> Component
+
+
+  abstract class Decorator {
+    +operation(): void
+  }
+
+  Decorator --up|> Component
+  Component --lefto Decorator
+
+  class ConcreteDecoratorA {
+    +operation(): void
+    +addBehavior(): void
+  }
+
+  class ConcreteDecoratorB {
+    +operation(): void
+    +addBehavior(): void
+  }
+
+  ConcreteDecoratorA --up|> Decorator
+  ConcreteDecoratorB --up|> Decorator
+
+  note left of Decorator
+  component.operation()
+  end note
+
+  note left of ConcreteDecoratorA
+  addBehavior()
+  end note
+}
+@enduml

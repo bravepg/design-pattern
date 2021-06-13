@@ -1,0 +1,43 @@
+@startuml mainframe
+package "class Observer" <<Frame>> {
+  abstract class Subject {
+    -observerList: Observer
+    +attach(): void
+    +detach(): void
+    +notify(): void
+  }
+  class ConcreteSubject {
+    -state: int
+    +setState(): void
+    +getState(): int
+  }
+
+  ConcreteSubject --up|> Subject
+
+  abstract class Observer {
+    +update(): void
+  }
+
+  class ConcreteObserver {
+    -observerState: int
+    +update(): void
+  }
+
+  ConcreteObserver --up|> Observer
+
+  Subject --right> Observer
+
+  ConcreteObserver --left> ConcreteSubject
+
+
+  note left of Subject
+  for o in observerList {
+    o.update();
+  }
+  end note
+
+  note right of ConcreteObserver
+  observerState = ConcreteSubject.getState()
+  end note
+}
+@enduml

@@ -1,0 +1,33 @@
+@startuml mainframe
+package "class PubSub" <<Frame>> {
+  interface IPublisher {
+    +pubish(): void
+  }
+
+  class ConcretePublisher {
+    +pubish(): void
+  }
+
+  ConcretePublisher ..up|> IPublisher
+
+  class SubPub {
+    +subscribe(): void
+    +unsubscribe(): void
+    +publish(): void
+  }
+
+  ConcretePublisher --right> SubPub
+
+  interface ISubscriber {
+
+  }
+
+  class ConcreteSubscriber {
+
+  }
+
+  ConcreteSubscriber ..up|> ISubscriber
+  ConcreteSubscriber --left> SubPub
+  SubPub ..> ConcreteSubscriber
+}
+@enduml

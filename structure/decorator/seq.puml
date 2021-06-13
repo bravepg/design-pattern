@@ -1,0 +1,19 @@
+@startuml mainframe
+actor iMain
+participant ConcreteComponent
+participant ConcreteDecoratorA
+
+iMain --> ConcreteComponent: 1.0 <<create>>
+iMain --> ConcreteDecoratorA: 1.1 ConcreteDecoratorA(ccomponent)
+
+iMain -> ConcreteDecoratorA: 1.2 operation()
+activate ConcreteDecoratorA
+
+ConcreteDecoratorA -> ConcreteComponent: 1.3 operation()
+activate ConcreteComponent
+deactivate ConcreteComponent
+
+ConcreteDecoratorA -> ConcreteDecoratorA: 1.4 addBehavior()
+activate ConcreteDecoratorA
+
+@enduml

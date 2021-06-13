@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body style="display: flex; align-items: center;">
+  <button id="addNewObserver">Add New Observer checkbox</button>
+  <input type="checkbox" id="mainCheckbox" />
+  <div style="display: flex; align-items: center;" id="observersContainer"></div>
+</body>
+</html>
+<script>
+  function Subject() {
+    this.observers = [];
+  }
+  Subject.prototype.registerObserver = function(observer) {
+    this.observers.push(observer);
+  }
+  Subject.prototype.removeObserver = function(observer) {
+    const index = this.observers.indexOf(observer);
+    this.observers.splice(index, 1);
+  }
+  Subject.prototype.notifyObservers = function(value) {
+    this.observers.forEach(observer => observer.update(value));
+  }
+
+  function Observer(message) {
+    this.message = message;
+  }
+  Observer.prototype.update = function() {
+    console.log(`${this.message} update`);
+  }
+
+  // const subject = new Subject();
+  // const observer1 = new Observer('observer1');
+  // const observer2 = new Observer('observer2');
+
+  // subject.registerObserver(observer1);
+  // subject.registerObserver(observer2);
+  // subject.notifyObservers();
+  // subject.removeObserver(observer1);
+  // subject.notifyObservers();
+
+  function extend(obj, extension) {
+    for (let key in obj) {
+      extension[key] = obj[key];
+    }
+  }
+
+  const controlCheckbox = document.getElementById('mainCheckbox');
+  const addBtn= document.getElementById('addNewObserver');
+  const container = document.getElementById('observersContainer');
+
+  extend(new Subject(), controlCheckbox);
+
+  controlCheckbox.onclick = function() {
+    controlCheckbox.notifyObservers(controlCheckbox.checked);
+  }
+
+  // addBtn.onclick = (function() {
+  //   let i = 1;
+  //   return function() {
+  //     const observer = new Observer(`observer${i++}`);
+  //     controlCheckbox.registerObserver(observer);
+  //   }
+  // })();
+  
+  addBtn.onclick = function() {
+    const check = document.createElement('input');
+    check.type = 'checkbox';
+
+    const observer = new Observer();
+    extend(observer, check);
+    check.update = function(value) {
+      this.checked = value;
+    }
+
+    controlCheckbox.registerObserver(check);
+
+    container.appendChild(check);
+  }
+</script>
