@@ -1,0 +1,14 @@
+@startuml mainframe
+package "class Template" <<Frame>> {
+  abstract class Template {
+    +function1();
+    +abstract function2();
+  }
+
+  class Concrete {
+    +function2();
+  }
+
+  Concrete --up|> Template
+}
+@enduml
