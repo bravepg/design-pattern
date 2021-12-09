@@ -1,0 +1,32 @@
+@startuml mainframe
+package "class ChainOfResponsibility" <<Frame>> {
+  abstract AbstractHandler {
+    -BaseHandler nextHandler
+    +setNextHanlder(): void
+    +sendMessage(): void
+    +write(): void
+  }
+  class ConcreteHandlerA {
+  }
+
+  class ConcreteHandlerB {
+  }
+
+  AbstractHandler --|> ConcreteHandlerA
+  AbstractHandler --|> ConcreteHandlerB
+
+  class Client {}
+
+  Client --> AbstractHandler
+
+  note left of Client
+  hA = new ConcreteHandlerA();
+  hB = new ConcreteHandlerB();
+
+  hA.setNextHanlder(hB);
+
+  hA.sendMessage();
+  end note
+  
+}
+@enduml
