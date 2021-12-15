@@ -1,0 +1,19 @@
+@startuml mainframe
+package "class  Facade" <<Frame>> {
+  class Client {
+  }
+  class Facade {
+  }
+
+  Client ..> Facade
+
+  class SystemA {}
+  class SystemB {}
+  class SystemC {}
+
+  Facade --> SystemA
+  Facade --> SystemB
+  Facade --> SystemC
+  
+}
+@enduml

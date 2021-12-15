@@ -1,0 +1,15 @@
+@startuml mainframe
+package "class Singleton" <<Frame>> {
+  class Singleton {
+    -instance: Singleton
+    +getInstance(): Singleton
+  }
+
+  note bottom of Singleton
+  if (instance == null) {
+    instance = new Singleton();
+  }
+  return instance;
+  end note
+}
+@enduml

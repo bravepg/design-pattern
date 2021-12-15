@@ -1,2 +1,7 @@
-package com.tripp.factory.ioc;public class Driver {
+package com.tripp.factory.ioc;
+
+public class Driver {
+    public Driver() {
+        System.out.println("Driver");
+    }
 }

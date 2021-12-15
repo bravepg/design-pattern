@@ -20,11 +20,11 @@ class ProductB1 extends Product1 {
     }
 }
 
-public abstract class AbstractFactory {
+public abstract class MethodFactory {
     abstract Product1 createProduct();
 }
 
-class ProductA1Factory extends AbstractFactory {
+class ProductA1Factory extends MethodFactory {
 
     @Override
     Product1 createProduct() {
@@ -32,7 +32,7 @@ class ProductA1Factory extends AbstractFactory {
     }
 }
 
-class ProductB1Factory extends AbstractFactory {
+class ProductB1Factory extends MethodFactory {
 
     @Override
     Product1 createProduct() {

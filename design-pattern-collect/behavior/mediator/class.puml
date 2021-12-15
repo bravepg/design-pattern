@@ -1,0 +1,37 @@
+@startuml mainframe
+package "class  Mediator" <<Frame>> {
+  abstract class Mediator {
+    + operation(): void
+    + register(Colleague): void
+  }
+  abstract class Colleague {
+    + recieveMsg(): void
+    + sendMsg(): void
+    + setMediator(): void
+  }
+
+  Colleague --right> Mediator
+
+  class ConcreateMediator {
+    + operation(): void
+  }
+  
+  ConcreateMediator --up|> Mediator
+
+  class ConcreateColleagueA {
+    + sendMsg(): void
+    + setMediator(): void
+  }
+
+  class ConcreateColleagueB {
+    + sendMsg(): void
+    + setMediator(): void
+  }
+
+  ConcreateColleagueA --up|> Colleague
+  ConcreateColleagueB ---up|> Colleague
+
+  ConcreateMediator --left> ConcreateColleagueA
+  ConcreateMediator --left> ConcreateColleagueB
+}
+@enduml
