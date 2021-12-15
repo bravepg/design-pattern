@@ -1,3 +1,5 @@
+package behavior.mediator;
+
 import java.util.ArrayList;
 import java.util.List;
 
