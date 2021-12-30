@@ -1,0 +1,16 @@
+@startuml mainframe
+package "class Builder" <<Frame>> {
+
+  class Person {
+  }
+
+  class Builder {
+    +buildPart1(): Builder
+    +buildPart2(): Builder
+    +buildPart3(): Builder
+    +build(): Person
+  }
+
+  Builder --right> Person
+}
+@enduml
