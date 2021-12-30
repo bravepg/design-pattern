@@ -1,11 +1,12 @@
-package com.tripp.proxy.aop;
+package com.tripp.proxy.aop.v1;
 
 public class TimeProxy {
-    public void start() {
+    public void before() {
         System.out.println("start");
     }
 
-    public void end() {
+    public void after() {
         System.out.println("end");
     }
+
 }
