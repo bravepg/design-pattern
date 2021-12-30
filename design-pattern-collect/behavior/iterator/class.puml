@@ -1,0 +1,26 @@
+@startuml mainframe
+package "class Iterator" <<Frame>> {
+  interface Collection {
+    +iterator(): Iterator
+  }
+
+  interface Iterator {
+    +hasNext(): boolean
+    +next(): E
+  }
+
+  class ArrayList {
+
+  }
+
+  class ArrayIterator {
+
+  }
+
+  ArrayList ..up|> Collection
+
+  ArrayIterator ..up|> Iterator
+
+  Collection --right> Iterator
+}
+@enduml
