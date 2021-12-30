@@ -1,0 +1,27 @@
+@startuml mainframe
+package "class Proxy" <<Frame>> {
+  interface Subject {
+    +request(): void
+  }
+
+  class Proxy {
+    +beforeRequest(): void
+    +request(): void
+    +afterRequest(): void
+  }
+
+  class RealSubject {
+    +request(): void
+  }
+
+  Subject ..down|> Proxy
+  Subject ..right|> RealSubject
+
+  
+  note left of Proxy
+    beforeRequest();
+    realSubject.request();
+    afterRequest();
+  end note
+}
+@enduml
