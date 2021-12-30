@@ -1,0 +1,28 @@
+@startuml mainframe
+package "class Visitor" <<Frame>> {
+  abstract class Node {
+    +accept(Visitor visitor): void
+  }
+  class Node1 {
+    +accept(Visitor visitor): void
+  }
+  class Node2 {
+    +accept(Visitor visitor): void
+  }
+
+  Node1 --up|> Node
+  Node2 --up|> Node
+
+  interface Visitor {
+    +visitNode1(Node1): void
+    +visitNode2(Node2): void
+  }
+
+  note left of Node1 {
+    accept(Visitor visitor)
+      visitor.visitorNode1(this);
+  }
+
+  Node --right> Visitor
+}
+@enduml
