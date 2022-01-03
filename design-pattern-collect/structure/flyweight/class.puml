@@ -1,0 +1,32 @@
+@startuml mainframe
+package "class Flyweight" <<Frame>> {
+  interface Flyweight {
+    +operation(): void
+  }
+
+  class ConcreateFlyweight {
+    -intrinsicState
+    +operation(): void
+  }
+
+  class UnsharedConcreateFlyweight {
+    -allState
+    +operation(): void
+  }
+
+  Flyweight ..down|> ConcreateFlyweight
+  Flyweight ..right|> UnsharedConcreateFlyweight
+
+
+  class FlyweightFactory {
+    -mpFlyWeight: Map<String, Flyweight>
+    +getFlyweight(String)
+  }
+
+  Flyweight --lefto FlyweightFactory
+  
+  note bottom of FlyweightFactory
+  return Flyweight
+  end note
+}
+@enduml
