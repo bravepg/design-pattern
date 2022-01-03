@@ -1,0 +1,29 @@
+@startuml mainframe
+package "class Composite" <<Frame>> {
+  interface Component {
+    +excute(): void
+  }
+
+  class LeafNode {
+    +excute(): void
+  }
+
+  class Composite {
+    -children: Component[]
+    +addChild(): void
+    +removeChild(): void
+    +excute(): void
+  }
+
+  LeafNode ..up|> Component
+  Composite ..|> Component
+
+  Component -left-o Composite
+  
+  class Client {
+  }
+
+  Client --> Component
+  
+}
+@enduml
