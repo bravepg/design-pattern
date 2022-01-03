@@ -1,0 +1,23 @@
+@startuml mainframe
+package "class Adapter" <<Frame>> {
+  class Target {
+    +request(): void
+  }
+
+  class Adapter {
+    -adaptee: Adaptee
+    +request(): void
+  }
+
+  class Adaptee {
+    +specificRequest(): void
+  }
+
+  Adapter --up|> Target
+  Adapter --right> Adaptee
+
+  note left of Adapter {
+    adaptee.specificRequest()
+  }
+}
+@enduml
