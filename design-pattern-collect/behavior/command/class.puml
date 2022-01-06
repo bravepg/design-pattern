@@ -1,0 +1,44 @@
+@startuml mainframe
+package "class Command" <<Frame>> {
+  interface Command {
+    +excute(): void
+  }
+
+  class Command1 {
+    -receiver: Receiver
+    -params
+    +excute(): void
+  }
+
+  class Command2 {
+    +excute(): void
+  }
+
+  class Receiver {
+    +operation(a, b, c)
+  }
+
+  class Invoker {
+    -command: Command
+    +setCommand(Command ommand)
+    +excuteCommand()
+  }
+
+  Command1 ..up|> Command
+  Command2 ..up|> Command
+
+  class Client {
+
+  }
+
+  Client --right> Invoker
+  Client --left> Receiver
+  Client ..> Command1
+
+  Invoker --> Command
+
+  note left of Command1 {
+    receiver.operation(params)
+  }
+}
+@enduml
