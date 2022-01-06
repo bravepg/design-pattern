@@ -1,0 +1,22 @@
+@startuml mainframe
+package "class Prototype" <<Frame>> {
+  interface Prototype {
+    +clone(): Prototype
+  }
+  class ConcreatePrototype {
+    -field1
+    +ConcreatePrototype(prototype)
+    +clone(): Prototype
+  }
+
+  Prototype <|.. ConcreatePrototype
+
+  note left of ConcreatePrototype {
+    this.field1 = prototype.field1;
+  }
+
+  note bottom of ConcreatePrototype {
+    return new ConcreatePrototype(this);
+  }
+}
+@enduml
