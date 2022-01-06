@@ -1,0 +1,32 @@
+@startuml mainframe
+package "class Bride" <<Frame>> {
+  interface Abstraction {
+    - i: Implementation
+    + feature1(): void
+    + feature2(): void
+  }
+
+  interface Implementation {
+    + method1(): void
+    + method2(): void
+    + method3(): void
+  }
+
+  Implementation --lefto Abstraction
+
+  class ConcreateImplementation {
+
+  }
+
+  class RefinedAbstraction {
+
+  }
+
+  Implementation <|.. ConcreateImplementation
+  RefinedAbstraction ..|> Abstraction
+
+  note left of Abstraction {
+    i.method1()
+  }
+}
+@enduml
