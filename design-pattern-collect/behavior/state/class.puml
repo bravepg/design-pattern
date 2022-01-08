@@ -1,0 +1,37 @@
+@startuml mainframe
+package "class State" <<Frame>> {
+  interface State {
+    +doThis()
+    +doThat()
+  }
+
+  class ConcreateState {
+    -context
+    +setContext(context)
+    +doThis()
+    +doThat()
+  }
+
+  State <|.. ConcreateState
+
+  class Context {
+    -state
+    +Context(initialState)
+    +changeState(state)
+    +doThis()
+    +doThat()
+  }
+
+  Context o--right> State
+
+  Context --> ConcreateState
+
+  note left of Context {
+    state.doThis()
+  }
+
+  note right of ConcreateState {
+    context.changeState(new OtherState())
+  }
+}
+@enduml
