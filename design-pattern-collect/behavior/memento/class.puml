@@ -1,0 +1,36 @@
+@startuml mainframe
+package "class Memento" <<Frame>> {
+  abstract class  Memento {
+    -state
+    +Memento(state)
+    +getState()
+  }
+
+  class Originator {
+    -state
+    +save(): Memento
+    +restore(m: Memento)
+  }
+
+  Originator ..right> Memento
+
+  class CareTaker {
+    -originator: Originator
+    -history: Memento[]
+    +doSomething()
+    +undo()
+  }
+
+  note left of CareTaker {
+    m = history.pop();
+    originator.restore(m);
+  }
+
+  note right of CareTaker {
+    m = originator.save();
+    history.push(m);
+  }
+
+   CareTaker o.. Memento
+}
+@enduml
